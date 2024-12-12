@@ -1,0 +1,90 @@
+\RequirePackage{plautopatch}
+\documentclass[a4j,twocolumn,uplatex,dvipdfmx]{jsarticle}
+% ----------- 拡張 ----------------------
+\usepackage{hyperref}
+\usepackage{graphicx}                                          % 画像を使える様にする
+\setlength{\topmargin}{0mm}                                    % 余白の設定
+\setlength{\textheight}{270truemm}
+\setlength{\textwidth}{16.5truecm}
+\setlength{\headheight}{-25mm}
+\baselineskip 14.5pt
+\usepackage[comma,sort&compress,sectionbib,numbers]{natbib} % 引用
+\renewcommand{\cite}[1]{\citet{#1}}
+\newcommand{\hcite}[1]{\citet{#1}}
+% ----------- 拡張ここまで ----------------------
+\pagestyle{empty}
+% ----------- 体裁ここまで ----------------------
+%% maketitle の再定義
+\makeatletter
+\def\subtitle#1{\def\@subtitle{#1}}
+\def\institute#1{\def\@institute{#1}}
+\def\id#1{\def\@id{#1}}
+%%%%%%%%%%%%%%%%
+\def\@maketitle{
+  \vspace*{-4pt}
+  \begin{center}
+    {\LARGE\bf \@title \par}
+    \vspace{4pt}
+    {\large\bf \@subtitle \par}
+  \end{center}
+  \vspace*{-8pt}
+  \begin{flushright}
+    {\normalsize \@institute \par}
+  \end{flushright}
+  \vspace*{-16pt}
+  \begin{center}
+    {\normalsize \@id \par}
+    {\Large \@author \par}
+  \end{center}
+  \vspace*{4pt}
+}
+\makeatother
+
+% ----------- 体裁ここまで ----------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ここにタイトルを入れる
+\title{適当なタイトルを入れて下さい}
+% サブタイトル, 無いなら空欄で良い
+\subtitle{}
+% 所属ゼミ
+\institute{情報メディア学科 佐々木 洋平ゼミ}
+% 学籍番号
+\id{XXXXXXXX}
+% ここに著者名を入れる
+\author{情報 太郎}
+% 日付はどうしようね?
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\twocolumn[%
+\maketitle
+]
+%----------- ここから本文 ----------------------
+\section{はじめに}
+
+ここには研究業界の流れとか, 本研究の位置付けとかを書く.
+最後に本研究の目的を明確にしておくこと.
+
+\section{モデルと実験設定}
+
+何をしたのか, どんな設定なのか, など.
+再現性が担保できる様に書きましょう.
+
+\section{結果}
+
+結果を書く. だらだら書かない.
+表や図があると良い.
+
+\section{議論}
+
+議論とまとめを書く.
+「はじめに」で書いた目的に沿った形でまとめること.
+
+\begin{thebibliography}{9}
+\bibitem[卒研小論文の様式]{様式2024}
+  著者名, 2024: 卒研小論文の様式
+
+\end{thebibliography}
+
+%----------- ここまで本文 ----------------------
+\end{document}
