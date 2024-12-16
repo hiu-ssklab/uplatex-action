@@ -13,3 +13,5 @@ auto
 *.out
 *.synctex.gz
 *.pdf
+## textlint
+node_modules
