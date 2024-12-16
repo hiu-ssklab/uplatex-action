@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: npm
-          node-version: "18.x"
+          node-version: "22.x"
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest

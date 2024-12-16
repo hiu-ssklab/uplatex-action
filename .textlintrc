@@ -1,0 +1,57 @@
+// -*- mode: javascript; coding: utf-8-unix -*-
+{
+    "plugins": ["latex2e"],
+    "rules": {
+        "preset-ja-technical-writing": {
+            // ですます→である
+            "no-mix-dearu-desumasu" : {
+                "preferInHeader": "である",
+                "preferInBody": "である",
+                "preferInList": "である",
+                "strict": true
+            },
+            // 句読点ルール
+            "ja-no-mixed-period": {
+                "periodMark": "."
+            },
+            "ja-use-comma-instead-of-touten": true,
+            // https://github.com/azu/textlint-rule-preset-JTF-style
+            "arabic-kanji-numbers": true,
+            // https://github.com/azu/textlint-rule-no-double-negative-ja
+            "no-double-negative-ja": true,
+            // https://github.com/azu/textlint-rule-no-dropping-the-ra
+            "no-dropping-the-ra": true,
+            // https://github.com/takahashim/textlint-rule-no-doubled-conjunction
+            "no-doubled-conjunction": true,
+            // https://github.com/textlint-ja/textlint-rule-no-doubled-joshi
+            "no-doubled-joshi": true,
+            // https://github.com/azu/textlint-rule-no-nfd
+            "no-nfd": true,
+            // https://github.com/azu/textlint-rule-no-hankaku-kana
+            "no-hankaku-kana": true,
+            // https://github.com/textlint-ja/textlint-rule-ja-no-weak-phrase
+            "ja-no-weak-phrase": true,
+            // https://github.com/textlint-ja/textlint-rule-ja-no-successive-word
+            "ja-no-successive-word": true,
+            // https://github.com/textlint-ja/textlint-rule-ja-no-abusage
+            "ja-no-abusage": true,
+            // https://github.com/textlint-ja/textlint-rule-ja-no-redundant-expression
+            "ja-no-redundant-expression": true,
+            // https://github.com/textlint-ja/textlint-rule-ja-unnatural-alphabet
+            "ja-unnatural-alphabet": true,
+            // https://github.com/textlint-rule/textlint-rule-no-unmatched-pair
+            "no-unmatched-pair": true,
+            // https://github.com/textlint-rule/textlint-rule-no-exclamation-question-mark
+            "no-exclamation-question-mark": true,
+            // https://github.com/bean1310/textlint-rule-ja-use-comma-instead-of-touten
+            "max-kanji-continuous-len": {
+                allow: [
+                    "統合開発環境"
+                ]
+            },
+        },
+    },
+    "filters": {
+        "comments": true
+    },
+}
