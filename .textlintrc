@@ -2,53 +2,46 @@
 {
     "plugins": ["latex2e"],
     "rules": {
+        "ja-hiragana-fukushi": true,
+        "ja-hiragana-hojodoushi": true,
+        "no-mixed-zenkaku-and-hankaku-alphabet": true,
+        "preset-ja-engineering-paper" : {
+            "unify-kuten-and-touten": {
+                kuten: '。',
+                touten: '，',
+                possibleMarks: {
+                    kuten: [ '。'],
+                    touten: ['，'],
+                },
+            },
+        },
+        "preset-ja-spacing": true,
         "preset-ja-technical-writing": {
-            // ですます→である
-            "no-mix-dearu-desumasu" : {
-                "preferInHeader": "である",
-                "preferInBody": "である",
-                "preferInList": "である",
-                "strict": true
-            },
-            // 句読点ルール
             "ja-no-mixed-period": {
-                "periodMark": "."
+                "periodMark": "。"
             },
-            "ja-use-comma-instead-of-touten": true,
-            // https://github.com/azu/textlint-rule-preset-JTF-style
-            "arabic-kanji-numbers": true,
-            // https://github.com/azu/textlint-rule-no-double-negative-ja
-            "no-double-negative-ja": true,
-            // https://github.com/azu/textlint-rule-no-dropping-the-ra
-            "no-dropping-the-ra": true,
-            // https://github.com/takahashim/textlint-rule-no-doubled-conjunction
-            "no-doubled-conjunction": true,
-            // https://github.com/textlint-ja/textlint-rule-no-doubled-joshi
-            "no-doubled-joshi": true,
-            // https://github.com/azu/textlint-rule-no-nfd
-            "no-nfd": true,
-            // https://github.com/azu/textlint-rule-no-hankaku-kana
-            "no-hankaku-kana": true,
-            // https://github.com/textlint-ja/textlint-rule-ja-no-weak-phrase
-            "ja-no-weak-phrase": true,
-            // https://github.com/textlint-ja/textlint-rule-ja-no-successive-word
-            "ja-no-successive-word": true,
-            // https://github.com/textlint-ja/textlint-rule-ja-no-abusage
-            "ja-no-abusage": true,
-            // https://github.com/textlint-ja/textlint-rule-ja-no-redundant-expression
-            "ja-no-redundant-expression": true,
-            // https://github.com/textlint-ja/textlint-rule-ja-unnatural-alphabet
-            "ja-unnatural-alphabet": true,
-            // https://github.com/textlint-rule/textlint-rule-no-unmatched-pair
-            "no-unmatched-pair": true,
-            // https://github.com/textlint-rule/textlint-rule-no-exclamation-question-mark
-            "no-exclamation-question-mark": true,
-            // https://github.com/bean1310/textlint-rule-ja-use-comma-instead-of-touten
             "max-kanji-continuous-len": {
+                max: 8,
                 allow: [
-                    "統合開発環境"
                 ]
             },
+            "no-doubled-joshi": false, //preset-japaneseと重複のため
+            "sentence-length": false //preset-japaneseと重複のため
+        },
+        "preset-japanese": {
+            "no-doubled-joshi": {
+                "min_interval" : 1,
+                "allow": ["が"] // がの連続（https://github.com/textlint-ja/textlint-rule-no-doubled-joshi/issues/18）
+            },
+            "sentence-length" : {
+                "severity": "warning", // 数式を検出してもエラーにしない
+                "max": 120
+            }
+        },
+        "preset-jtf-style": {
+            "1.2.1.句点(。)と読点(、)": false,
+            "1.2.2.ピリオド(.)とカンマ(,)": false,
+            "4.1.3.ピリオド(.)、カンマ(,)": false
         },
     },
     "filters": {

@@ -1,7 +1,10 @@
+## OS remnant
+.DS_Store
+*.ini
 ## Editor remnant
 .#*
 *~
-*.elc
+*.bak
 ## LaTeX output, remnant
 auto
 *.dvi

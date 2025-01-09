@@ -1,0 +1,262 @@
+%%
+%% This is file 'syoron.sty',
+%% 2012/01/11 T. Hirohku Ver2.0
+%% 2022/10/25 T. Hirohku Ver3.0
+%% 2024/12/31 Y. Sasaki for uplatex
+%%
+\usepackage{type1cm}
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{10truept}{18truept}%
+  \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+  \abovedisplayshortskip \z@ \@plus3\p@
+  \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+  \belowdisplayskip \abovedisplayskip
+  \let\@listi\@listI}\normalsize
+
+%% 余白の設定
+\setlength{\oddsidemargin}{-12pt}
+\setlength{\topmargin}{0pt}
+\setlength{\marginparwidth}{0pt}
+\setlength{\marginparsep}{10pt}
+\setlength{\marginparpush}{5pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\footskip}{0pt}
+\setlength{\textheight}{700pt}
+\setlength{\textwidth}{478pt}
+%% 余白の設定　ここまで
+
+\setlength{\parsep}{0pt}
+\setlength{\columnsep}{2zw}%%2段組間の広さ
+
+\pagestyle{empty}%%ページ番号なし
+
+%\renewcommand\LARGE{%
+%  \@setfontsize\LARGE\@xivpt{16}
+%}
+
+%% 見出しの設定　上下の余白を少なくした
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+   {.3\Cvs \@plus.2\Cdp \@minus.2\Cdp}%
+   {.2\Cvs \@plus.2\Cdp}%
+   {\sffamily  \gtfamily \fontsize{10truept}{20truept}\selectfont}}
+%   {\reset@font\large\textgt}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+   {.4\Cvs \@plus.2\Cdp \@minus.2\Cdp}%
+   {.2\Cvs \@plus.2\Cdp}%
+   {\sffamily  \gtfamily \fontsize{10truept}{20truept}\selectfont}}
+%   {\reset@font\normalsize\textgt}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+   {.4\Cvs \@plus.2\Cdp \@minus.2\Cdp}%
+   {.2\Cvs \@plus.2\Cdp}%
+   {\sffamily  \gtfamily \fontsize{10truept}{20truept}\selectfont}}
+%   {\reset@font\textgt}}
+%% 見出しの設定　ここまで
+%% 見出しの設定 デフォルト
+%\newcommand{\section}{\@startsection{section}{1}{\z@}%
+%   {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+%   {.5\Cvs \@plus.3\Cdp}%
+%   {\reset@font\Large\bfseries}}
+%\newcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+%   {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+%   {.5\Cvs \@plus.3\Cdp}%
+%   {\reset@font\large\bfseries}}
+%\newcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+%   {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+%   {.5\Cvs \@plus.3\Cdp}%
+%   {\reset@font\normalsize\bfseries}}
+
+%% 見出しの前にセクション記号をつける場合（旧フォーマット）
+%\def\@seccntformat#1{\S \hbox{} \csname the#1\endcsname\quad}
+%% 見出し section 調整
+\def\@seccntformat#1{\csname the#1\endcsname .\ }
+%%
+\def\@startsection#1#2#3#4#5#6{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \@tempskipa #4\relax
+  \@afterindenttrue
+  \ifdim \@tempskipa <\z@
+    \@tempskipa -\@tempskipa \@afterindentfalse
+  \fi
+  \if@nobreak
+    \everypar{}%
+  \else
+    \addpenalty\@secpenalty\addvspace\@tempskipa
+  \fi
+  \@ifstar
+    {\@ssect{#3}{#4}{#5}{#6}}%
+    {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\sffamily \fontsize{10truept}{20truept}\selectfont \@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        {\rmfamily
+        \@hangfrom{\hskip #3\relax\@svsec}%
+        }%
+          \interlinepenalty \@M #8\@@par}%
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+      #7}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        #7}}%
+  \fi
+  \@xsect{#5}}
+%% section調整 終了
+
+
+%% 新規コマンド サブタイトル、学籍番号、ゼミ名
+\newif\if@subtitle \@subtitlefalse
+\def\subtitle#1{\@subtitletrue\gdef\@subtitle{#1}}
+\def\gakuseki#1{\gdef\@gakuseki{#1}}
+\def\@gakuseki{\@latex@warning@no@line{No \noexpand\gakuseki given}}%
+\def\seminar#1{\gdef\@seminar{#1}}
+\def\@seminar{\@latex@warning@no@line{No \noexpand\seminar given}}%
+
+%% \maketitle の変更 新規コマンドの追加、行間、フォントサイズの変更など
+
+\renewcommand{\maketitle}{\par
+  \begingroup
+    \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+    \def\@makefnmark{\hbox{\ifydir $\m@th^{\@thefnmark}$
+      \else\hbox{\yoko$\m@th^{\@thefnmark}$}\fi}}%
+     \long\def\@makefntext##1{\parindent 1em\noindent
+       \hbox to1.8em{\hss$\m@th^{\@thefnmark}$}##1}%
+    \if@twocolumn
+      \ifnum \col@number=\@ne \@maketitle
+      \else \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \@maketitle
+    \fi
+  \endgroup
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\p@thanks\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\@subtitle\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+  }
+  \def\@maketitle{%
+  \newpage\null
+%  \vskip 2em%
+   \noindent
+  \begin{center}%
+  \let\footnote\thanks
+    {\gtfamily \huge \@title \par}%
+%   \vskip .5em%
+\if@subtitle%
+    {\gtfamily \fontsize{16truept}{25truept}\selectfont \@subtitle \par}%
+    \fi
+    \vskip 1em%
+  \end{center}%
+  \begin{flushright}%
+    {\gtfamily \fontsize{11truept}{20truept}\selectfont \@seminar}\\
+  \end{flushright}%
+  \begin{center}
+    {\gtfamily \fontsize{11truept}{20truept}\selectfont \@gakuseki}\\
+    {\gtfamily \fontsize{16truept}{25truept}\selectfont
+%     \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+%    \vskip 1em%
+%    {\large \@date}\par%
+  \end{center}
+\par\vskip 1.5em}
+% }
+% {%else
+%   \renewcommand{\maketitle}{\par
+%     \begingroup
+%       \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+%       \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+%       \long\def\@makefntext##1{\advance\leftskip 3zw
+%         \parindent 1zw\noindent
+%         \llap{\@textsuperscript{\normalfont\@thefnmark}\hskip0.3zw}##1}%
+%       \if@twocolumn
+%         \ifnum \col@number=\@ne
+%           \@maketitle
+%         \else
+%           \twocolumn[\@maketitle]%
+%         \fi
+%       \else
+%         \newpage
+%         \global\@topnum\z@  % Prevents figures from going at top of page.
+%         \@maketitle
+%       \fi
+%       \plainifnotempty
+%       \@thanks
+%     \endgroup
+%     \setcounter{footnote}{0}%
+%     \global\let\thanks\relax
+%     \global\let\maketitle\relax
+%     \global\let\@thanks\@empty
+%     \global\let\@author\@empty
+%     \global\let\@date\@empty
+%     \global\let\@title\@empty
+%     \global\let\title\relax
+%     \global\let\author\relax
+%     \global\let\date\relax
+%     \global\let\and\relax
+%   }
+%   \def\@maketitle{%
+%     \newpage\null
+%     %\vskip 2em
+%     \noindent
+%     \begin{center}
+%     {\gtfamily \huge \@title \par}%
+% %      {\LARGE \@title \par}%
+% %      \vskip 1.5em
+%     \if@subtitle%
+%      {\gtfamily \fontsize{16pt}{25pt}\selectfont \@subtitle \par}%
+%     \fi
+%     \vskip 1em%
+%     \end{center}%
+%     \begin{flushright}%
+%       {\gtfamily \fontsize{11pt}{20pt}\selectfont \@seminar}\\
+%     \end{flushright}%
+%     \begin{center}%
+%       \let\footnote\thanks
+%     {\gtfamily \fontsize{11pt}{20pt}\selectfont \@gakuseki}\\
+%     {\gtfamily \fontsize{16pt}{25pt}\selectfont
+% %     \lineskip .5em%
+%       \begin{tabular}[t]{c}%
+%         \@author
+%       \end{tabular}\par}%
+% %    \vskip 1em%
+% %    {\large \@date}\par%
+
+%     \end{center}%
+%     \par\vskip 1.5em
+%     \ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
+%   }
+% }
+%% \maketitle の変更 ここまで

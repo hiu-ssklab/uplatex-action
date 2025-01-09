@@ -10,7 +10,7 @@ jobs:
       FILE_NAME: main
     steps:
       - name: set date tag
-        run: echo "NOW=$(date '+%Y-%m-%d-%H-%M-%S')" >> $GITHUB_ENV
+        run: echo "NOW=$(env TZ='Asia/Tokyo' date '+%Y-%m-%d-%H-%M-%S')" >> $GITHUB_ENV
       - name: Set up Git repository
         uses: actions/checkout@v3
         with:
